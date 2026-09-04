@@ -1,0 +1,45 @@
+﻿{
+    "DataVersion": 1,
+    "AircraftList": [
+        {
+            "TailNumberOrModel": "Cessna 172 (Standard)",
+            "Checklists": [
+                {
+                    "Title": "Before Takeoff",
+                    "Items": [
+                        {
+                            "Title": "Flight Controls",
+                            "Action": "FREE & CORRECT",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "Flaps",
+                            "Action": "SET TAKEOFF",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "Trim",
+                            "Action": "SET NEUTRAL",
+                            "IsChecked": false
+                        }
+                    ]
+                },
+                {
+                    "Title": "Cruise",
+                    "Items": [
+                        {
+                            "Title": "Power",
+                            "Action": "2100 - 2700 RPM",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "Mixture",
+                            "Action": "LEAN",
+                            "IsChecked": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

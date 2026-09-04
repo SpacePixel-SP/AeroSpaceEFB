@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AeroSpaceEFB.SplashPage"
+             BackgroundColor="#0F172A">
+
+    <Grid RowDefinitions="*, Auto" Padding="30">
+
+        <!-- Logo & Branding in der Mitte -->
+        <VerticalStackLayout Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" Spacing="15">
+            <Image Source="app_logo2.png" 
+                   WidthRequest="500" 
+                   HeightRequest="500" 
+                   HorizontalOptions="Center" />
+         <!-- 
+            <Label Text="AeroSpaceEFB" 
+                   FontSize="32" 
+                   FontAttributes="Bold" 
+                   TextColor="#38BDF8" 
+                   HorizontalOptions="Center" />
+             
+
+            <Label Text="Companion" 
+                   FontSize="14" 
+                   TextColor="#94A3B8" 
+                   HorizontalOptions="Center" 
+                   Margin="0,-10,0,0" />
+            -->
+        </VerticalStackLayout>
+
+        <!-- Ladebalken & Status-Text unten -->
+        <VerticalStackLayout Grid.Row="1" Spacing="10" MaximumWidthRequest="400" HorizontalOptions="Fill">
+
+            <ProgressBar x:Name="LoadingBar" 
+                         Progress="0.0" 
+                         ProgressColor="#38BDF8" 
+                         BackgroundColor="#1E293B" 
+                         HeightRequest="8" />
+
+            <Label x:Name="StatusLabel" 
+                   Text="Lade aerospace_efb_data.json..." 
+                   FontSize="11" 
+                   TextColor="#64748B" 
+                   HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>
