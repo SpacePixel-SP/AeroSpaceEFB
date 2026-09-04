@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AeroSpaceEFB.ViewModels"
+             x:Class="AeroSpaceEFB.SettingsPage"
+             BackgroundColor="#0B0F19"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.BindingContext>
+        <vm:SettingsViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto, *">
+
+        <!-- HEADER -->
+        <Border Grid.Row="0" BackgroundColor="#0F172A" StrokeThickness="0" Padding="15,10">
+            <Grid ColumnDefinitions="Auto, *, Auto">
+                <Button Grid.Column="0" 
+                        Text="← Menü" 
+                        Clicked="OnBackToMenuClicked" 
+                        BackgroundColor="#1E293B" 
+                        TextColor="White" 
+                        FontAttributes="Bold" 
+                        CornerRadius="8" />
+
+                <HorizontalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="10" VerticalOptions="Center">
+                    <Image Source="app_logo.png" HeightRequest="28"/>
+                    <Label Text="EINSTELLUNGEN" TextColor="White" FontSize="18" FontAttributes="Bold" VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+
+                <!-- Spacer -->
+                <BoxView Grid.Column="2" WidthRequest="70" Color="Transparent"/>
+            </Grid>
+        </Border>
+
+        <!-- EINSTELLUNGEN CONTENT -->
+        <ScrollView Grid.Row="1" Padding="20">
+            <VerticalStackLayout Spacing="20" MaximumWidthRequest="700" HorizontalOptions="Center">
+
+                <!-- DESIGN & DISPLAY -->
+                <Border BackgroundColor="#1E293B" StrokeShape="RoundRectangle 10" Padding="15">
+                    <VerticalStackLayout Spacing="15">
+                        <Label Text="DESIGN &amp; ANZEIGE" TextColor="#38BDF8" FontSize="14" FontAttributes="Bold"/>
+
+                        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="Dunkelmodus (Dark Mode)" TextColor="White" FontSize="14" FontAttributes="Bold"/>
+                                <Label Text="Optimiert für die Nutzung im Nachtflug / Cockpit" TextColor="#94A3B8" FontSize="12"/>
+                            </VerticalStackLayout>
+                            <Switch Grid.Column="1" 
+                                    IsToggled="{Binding Settings.IsDarkMode}" 
+                                    OnColor="#38BDF8" 
+                                    Toggled="OnSettingChanged"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- ZEIT & DATENVERWALTUNG -->
+                <Border BackgroundColor="#1E293B" StrokeShape="RoundRectangle 10" Padding="15">
+                    <VerticalStackLayout Spacing="15">
+                        <Label Text="SYSTEM &amp; ZEITZONE" TextColor="#38BDF8" FontSize="14" FontAttributes="Bold"/>
+
+                        <Grid ColumnDefinitions="*, Auto">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="UTC / Zulu Zeit als Standard" TextColor="White" FontSize="14" FontAttributes="Bold"/>
+                                <Label Text="Verwendet UTC im Scratchpad für AOBT/Offblock" TextColor="#94A3B8" FontSize="12"/>
+                            </VerticalStackLayout>
+                            <Switch Grid.Column="1" 
+                                    IsToggled="{Binding Settings.UseUtcTime}" 
+                                    OnColor="#38BDF8" 
+                                    Toggled="OnSettingChanged"/>
+                        </Grid>
+
+                        <BoxView HeightRequest="1" Color="#334155"/>
+
+                        <Grid ColumnDefinitions="*, Auto">
+                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="Automatisches Speichern" TextColor="White" FontSize="14" FontAttributes="Bold"/>
+                                <Label Text="Speichert Checklisten-Fortschritt sofort beim Abhaken" TextColor="#94A3B8" FontSize="12"/>
+                            </VerticalStackLayout>
+                            <Switch Grid.Column="1" 
+                                    IsToggled="{Binding Settings.AutoSaveEnabled}" 
+                                    OnColor="#38BDF8" 
+                                    Toggled="OnSettingChanged"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- GEFÄHRLICHER BEREICH / RESET -->
+                <Border BackgroundColor="#1E293B" StrokeShape="RoundRectangle 10" Padding="15" Stroke="#991B1B" StrokeThickness="1">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="DATEN &amp; SPEICHER ZURÜCKSETZEN" TextColor="#EF4444" FontSize="14" FontAttributes="Bold"/>
+
+                        <Label Text="Löscht alle selbst angelegten Flugzeuge, geänderten Checklisten und Notizen. Die App wird auf die Standard-Entwicklerdaten zurückgesetzt." 
+                               TextColor="#94A3B8" 
+                               FontSize="12"/>
+
+                        <Button Text="⚠️ Alle Daten auf Werkseinstellung zurücksetzen" 
+                                Command="{Binding ResetAllDataCommand}" 
+                                BackgroundColor="#7F1D1D" 
+                                TextColor="#FECACA" 
+                                FontAttributes="Bold" 
+                                CornerRadius="8" 
+                                HeightRequest="45" 
+                                Margin="0,5,0,0"/>
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>

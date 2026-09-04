@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AeroSpaceEFB.ViewModels"
+             x:Class="AeroSpaceEFB.ScratchpadPage"
+             BackgroundColor="#0B0F19"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.BindingContext>
+        <vm:ScratchpadViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto, *">
+
+        <!-- HEADER / NAVIGATIONBAR -->
+        <Border Grid.Row="0" BackgroundColor="#0F172A" StrokeThickness="0" Padding="15,10">
+            <Grid ColumnDefinitions="Auto, Auto, *, Auto">
+                <Button Grid.Column="0" 
+                        Text="← Menü" 
+                        Clicked="OnBackToMenuClicked" 
+                        BackgroundColor="#1E293B" 
+                        TextColor="White" 
+                        FontAttributes="Bold" 
+                        CornerRadius="8" />
+
+                <Button Grid.Column="1" 
+                        Text="📄 Export / Print" 
+                        Clicked="OnExportClicked" 
+                        BackgroundColor="#0284C7" 
+                        TextColor="White" 
+                        FontAttributes="Bold" 
+                        CornerRadius="8" />
+
+                <HorizontalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="10" VerticalOptions="Center">
+                    <Image Source="app_logo.png" HeightRequest="28"/>
+                    <Label Text="ATC SCRATCHPAD" TextColor="White" FontSize="18" FontAttributes="Bold" VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+
+                <Button Grid.Column="3" 
+                        Text="Clear All" 
+                        Command="{Binding ClearAllCommand}" 
+                        BackgroundColor="#7F1D1D" 
+                        TextColor="#FECACA" 
+                        FontAttributes="Bold" 
+                        CornerRadius="8" />
+            </Grid>
+        </Border>
+
+        <!-- FORMULAR / SCRATCHPAD CONTENT -->
+        <ScrollView Grid.Row="1" Padding="15">
+            <VerticalStackLayout Spacing="15">
+
+                <!-- ROW 1: FLIGHT & ROUTE INFO (Callsign, DEP, DEST) -->
+                <Grid ColumnDefinitions="*, *, *" ColumnSpacing="10">
+                    <Border Grid.Column="0" BackgroundColor="#1E293B" StrokeShape="RoundRectangle 8" Padding="10">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="CALLSIGN" TextColor="#38BDF8" FontSize="11" FontAttributes="Bold"/>
+                            <Entry Text="{Binding NotesData.Callsign}" Placeholder="DLH123" TextColor="#F59E0B" FontSize="18" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Column="1" BackgroundColor="#1E293B" StrokeShape="RoundRectangle 8" Padding="10">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="DEP (ICAO)" TextColor="#38BDF8" FontSize="11" FontAttributes="Bold"/>
+                            <Entry Text="{Binding NotesData.DepIcao}" Placeholder="EDDF" TextColor="White" FontSize="18" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Column="2" BackgroundColor="#1E293B" StrokeShape="RoundRectangle 8" Padding="10">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="DEST (ICAO)" TextColor="#38BDF8" FontSize="11" FontAttributes="Bold"/>
+                            <Entry Text="{Binding NotesData.DestIcao}" Placeholder="EDDM" TextColor="White" FontSize="18" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- ROW 2: SID PROCEDURES (Planned vs. Actual) -->
+                <Grid ColumnDefinitions="*, *" ColumnSpacing="10">
+                    <Border Grid.Column="0" BackgroundColor="#1E293B" StrokeShape="RoundRectangle 8" Padding="10">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="PLANNED SID" TextColor="#38BDF8" FontSize="11" FontAttributes="Bold"/>
+                            <Entry Text="{Binding NotesData.PlannedSid}" Placeholder="ANEKI1M" TextColor="#94A3B8" FontSize="16" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Column="1" BackgroundColor="#1E293B" StrokeShape="RoundRectangle 8" Padding="10">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="ACTUAL SID (CLEARED)" TextColor="#38BDF8" FontSize="11" FontAttributes="Bold"/>
+                            <Entry Text="{Binding NotesData.ActualSid}" Placeholder="MARUN2M" TextColor="#22C55E" FontSize="16" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- ROW 3: TIMINGS (PLANNED vs. ACTUAL OFFBLOCK) -->
+                <Grid ColumnDefinitions="*, *" ColumnSpacing="10">
+                    <Border Grid.Column="0" BackgroundColor="#1E293B" StrokeShape="RoundRectangle 8" Padding="10">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="PLANNED OFFBLOCK (EOBT)" TextColor="#38BDF8" FontSize="11" FontAttributes="Bold"/>
+                            <Entry Text="{Binding NotesData.PlannedOffblockTime}" Placeholder="12:30Z" TextColor="White" FontSize="16" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Column="1" BackgroundColor="#1E293B" StrokeShape="RoundRectangle 8" Padding="10">
+                        <VerticalStackLayout Spacing="2">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <Label Grid.Column="0" Text="ACTUAL OFFBLOCK (AOBT)" TextColor="#38BDF8" FontSize="11" FontAttributes="Bold" VerticalOptions="Center"/>
+                                <Button Grid.Column="1" Text="NOW" Command="{Binding SetActualOffblockNowCommand}" BackgroundColor="#0284C7" TextColor="White" FontSize="10" HeightRequest="22" Padding="6,0"/>
+                            </Grid>
+                            <Entry Text="{Binding NotesData.ActualOffblockTime}" Placeholder="12:35Z" TextColor="#22C55E" FontSize="16" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- ROW 4: ATC CONTROL DATA (Squawk, Runway, QNH, ATIS) -->
+                <Grid ColumnDefinitions="*, *, *, *" ColumnSpacing="10">
+                    <Border Grid.Column="0" BackgroundColor="#1E293B" StrokeShape="RoundRectangle 8" Padding="8">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="SQUAWK" TextColor="#38BDF8" FontSize="10" FontAttributes="Bold"/>
+                            <Entry Text="{Binding NotesData.Squawk}" Placeholder="7000" TextColor="#22C55E" FontSize="18" FontAttributes="Bold" Keyboard="Numeric"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Column="1" BackgroundColor="#1E293B" StrokeShape="RoundRectangle 8" Padding="8">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="RUNWAY" TextColor="#38BDF8" FontSize="10" FontAttributes="Bold"/>
+                            <Entry Text="{Binding NotesData.Runway}" Placeholder="25R" TextColor="White" FontSize="18" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Column="2" BackgroundColor="#1E293B" StrokeShape="RoundRectangle 8" Padding="8">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="QNH / ALT" TextColor="#38BDF8" FontSize="10" FontAttributes="Bold"/>
+                            <Entry Text="{Binding NotesData.Altimeter}" Placeholder="1013" TextColor="White" FontSize="18" FontAttributes="Bold" Keyboard="Numeric"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Column="3" BackgroundColor="#1E293B" StrokeShape="RoundRectangle 8" Padding="8">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="ATIS INFO" TextColor="#38BDF8" FontSize="10" FontAttributes="Bold"/>
+                            <Entry Text="{Binding NotesData.AtisText}" Placeholder="B" TextColor="#F59E0B" FontSize="18" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- C.R.A.F.T. CLEARANCE EDITOR -->
+                <Border BackgroundColor="#1E293B" StrokeShape="RoundRectangle 8" Padding="12">
+                    <VerticalStackLayout Spacing="6">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <Label Grid.Column="0" Text="ATC CLEARANCE (C.R.A.F.T.)" TextColor="#38BDF8" FontSize="12" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <Button Grid.Column="1" Text="+ Pattern" Command="{Binding AppendTemplateCommand}" CommandParameter="CRAFT" BackgroundColor="#0284C7" TextColor="White" FontSize="11" HeightRequest="26" Padding="8,0"/>
+                        </Grid>
+
+                        <Editor Text="{Binding NotesData.ClearanceText}" 
+                                Placeholder="C: Clearance Limit&#10;R: Route&#10;A: Altitude&#10;F: Frequency&#10;T: Transponder" 
+                                TextColor="White" 
+                                AutoSize="Disabled" 
+                                HeightRequest="110" 
+                                BackgroundColor="#0F172A" 
+                                FontSize="13" 
+                                FontFamily="Consolas"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- FREITEXT & TAXIWAYS -->
+                <Border BackgroundColor="#1E293B" StrokeShape="RoundRectangle 8" Padding="12">
+                    <VerticalStackLayout Spacing="6">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <Label Grid.Column="0" Text="FREIE NOTIZEN &amp; TAXIWAYS" TextColor="#38BDF8" FontSize="12" FontAttributes="Bold" VerticalOptions="Center"/>
+                            <Button Grid.Column="1" Text="+ Taxi" Command="{Binding AppendTemplateCommand}" CommandParameter="TAXI" BackgroundColor="#0284C7" TextColor="White" FontSize="11" HeightRequest="26" Padding="8,0"/>
+                        </Grid>
+
+                        <Editor Text="{Binding NotesData.FreeNotes}" 
+                                Placeholder="Taxi instructions, Holding point, Frequencies..." 
+                                TextColor="White" 
+                                AutoSize="Disabled" 
+                                HeightRequest="140" 
+                                BackgroundColor="#0F172A" 
+                                FontSize="13"/>
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>

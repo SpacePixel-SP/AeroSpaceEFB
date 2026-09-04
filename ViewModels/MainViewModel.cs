@@ -252,23 +252,34 @@ public class MainViewModel : INotifyPropertyChanged
     }
 
     // --- JSON SPEICHERN ---
-    private void SaveToJson()
+    public void SaveToJson()
     {
+        // Prüfen, ob AutoSave in den Einstellungen aktiviert ist
+        bool autoSave = Preferences.Get("AutoSaveEnabled", true);
+
+        if (!autoSave)
+        {
+            return;
+        }
+
         try
         {
-            var dataToSave = new AppConfigData
+            string filePath = System.IO.Path.Combine(Microsoft.Maui.Storage.FileSystem.AppDataDirectory, "aerospace_efb_data.json");
+
+            var config = new AppConfigData
             {
                 DataVersion = CurrentLoadedVersion,
-                AircraftList = AircraftList
+                // KORREKTUR: Kein .ToList(), sondern direkt zuweisen
+                // Mit ?? new() sichern wir uns zusätzlich gegen CS8602 (Nullverweis) ab
+                AircraftList = AircraftList ?? new System.Collections.ObjectModel.ObservableCollection<Aircraft>()
             };
 
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string jsonString = JsonSerializer.Serialize(dataToSave, options);
-            File.WriteAllText(_filePath, jsonString);
+            string json = System.Text.Json.JsonSerializer.Serialize(config, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+            System.IO.File.WriteAllText(filePath, json);
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"Fehler beim Speichern: {ex.Message}");
+            System.Diagnostics.Debug.WriteLine($"[EFB Save Error]: {ex.Message}");
         }
     }
 

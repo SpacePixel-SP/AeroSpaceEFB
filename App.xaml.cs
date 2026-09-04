@@ -6,7 +6,10 @@ public partial class App : Application
     {
         InitializeComponent();
 
-        // Startet direkt mit dem Ladebildschirm
-        MainPage = new SplashPage();
+        // 1. Theme-Einstellung direkt beim Start auslesen
+        bool isDark = Preferences.Get("IsDarkMode", true);
+        UserAppTheme = isDark ? AppTheme.Dark : AppTheme.Light;
+
+        MainPage = new NavigationPage(new SplashPage());
     }
 }

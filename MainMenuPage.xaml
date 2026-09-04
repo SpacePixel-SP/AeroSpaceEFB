@@ -66,10 +66,30 @@
                         HeightRequest="60" 
                         CornerRadius="10" />
 
-                <Button Text="⚙️ Einstellungen (Demnächst)" 
-                        IsEnabled="False" 
+                <Button Text="📝 ATC Scratchpad" 
+                        Clicked="OnOpenScratchpadClicked" 
                         BackgroundColor="#1E293B" 
-                        TextColor="#64748B" 
+                        TextColor="White" 
+                        FontSize="18" 
+                        FontAttributes="Bold" 
+                        CornerRadius="10" 
+                        HeightRequest="60" 
+                        Margin="0,5"/>
+
+                <Button Text="🧮 Calculations" 
+                        Clicked="OnOpenCalculationsClicked" 
+                        BackgroundColor="#1E293B" 
+                        TextColor="White" 
+                        FontSize="18" 
+                        FontAttributes="Bold" 
+                        CornerRadius="10" 
+                        HeightRequest="60" 
+                        Margin="0,5"/>
+
+                <Button Text="⚙️ Einstellungen" 
+                        Clicked="OnOpenSettingsClicked" 
+                        BackgroundColor="#1E293B" 
+                        TextColor="White" 
                         FontSize="18" 
                         HeightRequest="60" 
                         CornerRadius="10" />

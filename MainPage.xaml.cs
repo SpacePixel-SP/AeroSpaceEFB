@@ -22,4 +22,10 @@ public partial class MainPage : ContentPage
     {
         await Navigation.PopAsync();
     }
+
+    private void OnToggleScreenLockClicked(object sender, EventArgs e)
+    {
+        // Blendet die transparente Sperrschicht ein oder aus
+        ScreenLockOverlay.IsVisible = !ScreenLockOverlay.IsVisible;
+    }
 }

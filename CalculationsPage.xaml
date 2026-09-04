@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AeroSpaceEFB.ViewModels"
+             x:Class="AeroSpaceEFB.CalculationsPage"
+             BackgroundColor="#0B0F19"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.BindingContext>
+        <vm:CalculationsViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto, *">
+
+        <!-- HEADER -->
+        <Border Grid.Row="0" BackgroundColor="#0F172A" StrokeThickness="0" Padding="15,10">
+            <Grid ColumnDefinitions="Auto, *, Auto">
+                <Button Grid.Column="0" 
+                        Text="← Menü" 
+                        Clicked="OnBackToMenuClicked" 
+                        BackgroundColor="#1E293B" 
+                        TextColor="White" 
+                        FontAttributes="Bold" 
+                        CornerRadius="8" />
+
+                <HorizontalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="10" VerticalOptions="Center">
+                    <Image Source="app_logo.png" HeightRequest="28"/>
+                    <Label Text="FLIGHT CALCULATIONS" TextColor="White" FontSize="18" FontAttributes="Bold" VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+
+                <BoxView Grid.Column="2" WidthRequest="70" Color="Transparent"/>
+            </Grid>
+        </Border>
+
+        <!-- CONTENT -->
+        <ScrollView Grid.Row="1" Padding="15">
+            <VerticalStackLayout Spacing="15" MaximumWidthRequest="800" HorizontalOptions="Center">
+
+                <!-- 1. WEIGHT & BALANCE (TAKEOFF CG) CALCULATOR -->
+                <Border BackgroundColor="#1E293B" StrokeShape="RoundRectangle 8" Padding="12">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="⚖️ WEIGHT &amp; BALANCE / TAKEOFF CG" TextColor="#38BDF8" FontSize="14" FontAttributes="Bold"/>
+
+                        <Grid ColumnDefinitions="*, *, *" RowDefinitions="Auto, Auto, Auto, Auto" RowSpacing="8" ColumnSpacing="8">
+                            <!-- Headers -->
+                            <Label Grid.Row="0" Grid.Column="0" Text="ITEM" TextColor="#94A3B8" FontSize="11" FontAttributes="Bold"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="WEIGHT (lbs/kg)" TextColor="#94A3B8" FontSize="11" FontAttributes="Bold"/>
+                            <Label Grid.Row="0" Grid.Column="2" Text="ARM (in/cm)" TextColor="#94A3B8" FontSize="11" FontAttributes="Bold"/>
+
+                            <!-- Empty Weight -->
+                            <Label Grid.Row="1" Grid.Column="0" Text="Basic Empty" TextColor="White" VerticalOptions="Center"/>
+                            <Entry Grid.Row="1" Grid.Column="1" Text="{Binding EmptyWeight}" TextColor="White" Keyboard="Numeric"/>
+                            <Entry Grid.Row="1" Grid.Column="2" Text="{Binding EmptyArm}" TextColor="White" Keyboard="Numeric"/>
+
+                            <!-- Pilot & Pax -->
+                            <Label Grid.Row="2" Grid.Column="0" Text="Pilot &amp; Pax" TextColor="White" VerticalOptions="Center"/>
+                            <Entry Grid.Row="2" Grid.Column="1" Text="{Binding PilotPaxWeight}" TextColor="White" Keyboard="Numeric"/>
+                            <Entry Grid.Row="2" Grid.Column="2" Text="{Binding PilotPaxArm}" TextColor="White" Keyboard="Numeric"/>
+
+                            <!-- Fuel -->
+                            <Label Grid.Row="3" Grid.Column="0" Text="Usable Fuel" TextColor="White" VerticalOptions="Center"/>
+                            <Entry Grid.Row="3" Grid.Column="1" Text="{Binding FuelWeight}" TextColor="White" Keyboard="Numeric"/>
+                            <Entry Grid.Row="3" Grid.Column="2" Text="{Binding FuelArm}" TextColor="White" Keyboard="Numeric"/>
+
+                            <!-- Baggage -->
+                            <Label Grid.Row="4" Grid.Column="0" Text="Baggage" TextColor="White" VerticalOptions="Center"/>
+                            <Entry Grid.Row="4" Grid.Column="1" Text="{Binding BaggageWeight}" TextColor="White" Keyboard="Numeric"/>
+                            <Entry Grid.Row="4" Grid.Column="2" Text="{Binding BaggageArm}" TextColor="White" Keyboard="Numeric"/>
+                        </Grid>
+
+                        <Border BackgroundColor="#0F172A" StrokeShape="RoundRectangle 6" Padding="10" Margin="0,5,0,0">
+                            <Label Text="{Binding CgResultText}" TextColor="#22C55E" FontSize="15" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        </Border>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- 2. WIND COMPONENTS CALCULATOR -->
+                <Border BackgroundColor="#1E293B" StrokeShape="RoundRectangle 8" Padding="12">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="💨 WIND COMPONENTS" TextColor="#38BDF8" FontSize="14" FontAttributes="Bold"/>
+                        <Grid ColumnDefinitions="*, *, *, Auto" ColumnSpacing="8">
+                            <Entry Grid.Column="0" Text="{Binding RunwayHeading}" Placeholder="Rwy (0-360°)" TextColor="White" Keyboard="Numeric"/>
+                            <Entry Grid.Column="1" Text="{Binding WindDirection}" Placeholder="Wind Dir (°)" TextColor="White" Keyboard="Numeric"/>
+                            <Entry Grid.Column="2" Text="{Binding WindSpeed}" Placeholder="Wind Spd (kt)" TextColor="White" Keyboard="Numeric"/>
+                            <Button Grid.Column="3" Text="Calc" Command="{Binding CalculateWindCommand}" BackgroundColor="#0284C7" TextColor="White" FontAttributes="Bold"/>
+                        </Grid>
+                        <Border BackgroundColor="#0F172A" StrokeShape="RoundRectangle 6" Padding="8">
+                            <Label Text="{Binding WindResult}" TextColor="#22C55E" FontSize="13" FontAttributes="Bold"/>
+                        </Border>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- 3. TOP OF DESCENT (TOD) CALCULATOR -->
+                <Border BackgroundColor="#1E293B" StrokeShape="RoundRectangle 8" Padding="12">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="📉 TOP OF DESCENT (TOD)" TextColor="#38BDF8" FontSize="14" FontAttributes="Bold"/>
+                        <Grid ColumnDefinitions="*, *, *, Auto" ColumnSpacing="8">
+                            <Entry Grid.Column="0" Text="{Binding CurrentAlt}" Placeholder="Current Alt (ft)" TextColor="White" Keyboard="Numeric"/>
+                            <Entry Grid.Column="1" Text="{Binding TargetAlt}" Placeholder="Target Alt (ft)" TextColor="White" Keyboard="Numeric"/>
+                            <Entry Grid.Column="2" Text="{Binding GroundSpeed}" Placeholder="GS (kt)" TextColor="White" Keyboard="Numeric"/>
+                            <Button Grid.Column="3" Text="Calc" Command="{Binding CalculateTodCommand}" BackgroundColor="#0284C7" TextColor="White" FontAttributes="Bold"/>
+                        </Grid>
+                        <Border BackgroundColor="#0F172A" StrokeShape="RoundRectangle 6" Padding="8">
+                            <Label Text="{Binding TodResult}" TextColor="#22C55E" FontSize="13" FontAttributes="Bold"/>
+                        </Border>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- 4. FUEL CONVERTER -->
+                <Border BackgroundColor="#1E293B" StrokeShape="RoundRectangle 8" Padding="12">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="⛽ FUEL CONVERTER" TextColor="#38BDF8" FontSize="14" FontAttributes="Bold"/>
+                        <Grid ColumnDefinitions="*, Auto" ColumnSpacing="8">
+                            <Entry Grid.Column="0" Text="{Binding FuelGallons}" Placeholder="US Gallons" TextColor="White" Keyboard="Numeric"/>
+                            <Button Grid.Column="1" Text="Convert" Command="{Binding CalculateFuelCommand}" BackgroundColor="#0284C7" TextColor="White" FontAttributes="Bold"/>
+                        </Grid>
+                        <Border BackgroundColor="#0F172A" StrokeShape="RoundRectangle 6" Padding="8">
+                            <Label Text="{Binding FuelResult}" TextColor="#22C55E" FontSize="13" FontAttributes="Bold"/>
+                        </Border>
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>
