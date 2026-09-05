@@ -13,7 +13,7 @@
     <!-- Gesamtes Seitenlayout in Zeilen: 1. Header oben, 2. Hauptinhalt darunter -->
     <Grid RowDefinitions="Auto, *">
 
-        <Border Grid.Row="0" BackgroundColor="#1E293B" StrokeThickness="0" Padding="15,10">
+        <Border Grid.Row="0" BackgroundColor="Black" StrokeThickness="0" Padding="15,10">
             <Grid ColumnDefinitions="Auto, *, Auto">
 
                 <!-- Links: Zurück-Button -->

@@ -9,7 +9,7 @@
     <Grid RowDefinitions="Auto, *">
 
         <!-- 1. BENUTZERDEFINIERTE GROSSE HEADER-LEISTE (Identisch mit MainPage) -->
-        <Border Grid.Row="0" BackgroundColor="#1E293B" StrokeThickness="0" Padding="15,10">
+        <Border Grid.Row="0" BackgroundColor="Black" StrokeThickness="0" Padding="15,10">
             <Grid ColumnDefinitions="Auto, *, Auto">
 
                 <!-- Platzhalter links für die Ausrichtung (da im Hauptmenü kein Zurück-Button existiert) -->

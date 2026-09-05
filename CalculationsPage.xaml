@@ -13,7 +13,7 @@
     <Grid RowDefinitions="Auto, *">
 
         <!-- HEADER -->
-        <Border Grid.Row="0" BackgroundColor="#0F172A" StrokeThickness="0" Padding="15,10">
+        <Border Grid.Row="0" BackgroundColor="Black" StrokeThickness="0" Padding="15,10">
             <Grid ColumnDefinitions="Auto, *, Auto">
                 <Button Grid.Column="0" 
                         Text="← Menü" 
