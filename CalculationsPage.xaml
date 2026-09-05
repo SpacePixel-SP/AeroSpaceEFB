@@ -41,28 +41,28 @@
                     <VerticalStackLayout Spacing="10">
                         <Label Text="⚖️ WEIGHT &amp; BALANCE / TAKEOFF CG" TextColor="#38BDF8" FontSize="14" FontAttributes="Bold"/>
 
-                        <Grid ColumnDefinitions="*, *, *" RowDefinitions="Auto, Auto, Auto, Auto" RowSpacing="8" ColumnSpacing="8">
-                            <!-- Headers -->
+                        <Grid ColumnDefinitions="*, *, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto" RowSpacing="8" ColumnSpacing="8">
+                            <!-- Row 0: Headers -->
                             <Label Grid.Row="0" Grid.Column="0" Text="ITEM" TextColor="#94A3B8" FontSize="11" FontAttributes="Bold"/>
                             <Label Grid.Row="0" Grid.Column="1" Text="WEIGHT (lbs/kg)" TextColor="#94A3B8" FontSize="11" FontAttributes="Bold"/>
                             <Label Grid.Row="0" Grid.Column="2" Text="ARM (in/cm)" TextColor="#94A3B8" FontSize="11" FontAttributes="Bold"/>
 
-                            <!-- Empty Weight -->
+                            <!-- Row 1: Empty Weight -->
                             <Label Grid.Row="1" Grid.Column="0" Text="Basic Empty" TextColor="White" VerticalOptions="Center"/>
                             <Entry Grid.Row="1" Grid.Column="1" Text="{Binding EmptyWeight}" TextColor="White" Keyboard="Numeric"/>
                             <Entry Grid.Row="1" Grid.Column="2" Text="{Binding EmptyArm}" TextColor="White" Keyboard="Numeric"/>
 
-                            <!-- Pilot & Pax -->
+                            <!-- Row 2: Pilot & Pax -->
                             <Label Grid.Row="2" Grid.Column="0" Text="Pilot &amp; Pax" TextColor="White" VerticalOptions="Center"/>
                             <Entry Grid.Row="2" Grid.Column="1" Text="{Binding PilotPaxWeight}" TextColor="White" Keyboard="Numeric"/>
                             <Entry Grid.Row="2" Grid.Column="2" Text="{Binding PilotPaxArm}" TextColor="White" Keyboard="Numeric"/>
 
-                            <!-- Fuel -->
+                            <!-- Row 3: Fuel -->
                             <Label Grid.Row="3" Grid.Column="0" Text="Usable Fuel" TextColor="White" VerticalOptions="Center"/>
                             <Entry Grid.Row="3" Grid.Column="1" Text="{Binding FuelWeight}" TextColor="White" Keyboard="Numeric"/>
                             <Entry Grid.Row="3" Grid.Column="2" Text="{Binding FuelArm}" TextColor="White" Keyboard="Numeric"/>
 
-                            <!-- Baggage -->
+                            <!-- Row 4: Baggage (jetzt sauber in eigener 5. Zeile) -->
                             <Label Grid.Row="4" Grid.Column="0" Text="Baggage" TextColor="White" VerticalOptions="Center"/>
                             <Entry Grid.Row="4" Grid.Column="1" Text="{Binding BaggageWeight}" TextColor="White" Keyboard="Numeric"/>
                             <Entry Grid.Row="4" Grid.Column="2" Text="{Binding BaggageArm}" TextColor="White" Keyboard="Numeric"/>

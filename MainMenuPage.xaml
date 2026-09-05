@@ -26,7 +26,7 @@
 
                 <!-- Rechts: Subtiler Hinweis -->
                 <Label Grid.Column="2" 
-                       Text="Companion EFB v0.1.0-alpha" 
+                       Text="Companion EFB v0.2.0-alpha" 
                        FontSize="14" 
                        TextColor="#64748B" 
                        VerticalOptions="Center" 

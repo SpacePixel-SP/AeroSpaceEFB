@@ -1,40 +1,315 @@
 ﻿{
-    "DataVersion": 1,
+    "DataVersion": 3,
     "AircraftList": [
         {
-            "TailNumberOrModel": "Cessna 172 (Standard)",
+            "TailNumberOrModel": "Airbus a32X (Standard)",
             "Checklists": [
                 {
-                    "Title": "Before Takeoff",
+                    "Title": "Cockpit Preparation",
                     "Items": [
                         {
-                            "Title": "Flight Controls",
-                            "Action": "FREE & CORRECT",
+                            "Title": "GEAR PINS AND COVERS",
+                            "Action": "REMOVED",
                             "IsChecked": false
                         },
                         {
-                            "Title": "Flaps",
-                            "Action": "SET TAKEOFF",
+                            "Title": "FUEL QUANTITY",
+                            "Action": "___KG",
                             "IsChecked": false
                         },
                         {
-                            "Title": "Trim",
-                            "Action": "SET NEUTRAL",
+                            "Title": "SIGNS",
+                            "Action": "ON/AUTO",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "ADIRS",
+                            "Action": "NAV",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "BARO REF",
+                            "Action": "____(BOTH)",
                             "IsChecked": false
                         }
                     ]
                 },
                 {
-                    "Title": "Cruise",
+                    "Title": "Before Start",
                     "Items": [
                         {
-                            "Title": "Power",
-                            "Action": "2100 - 2700 RPM",
+                            "Title": "PARKING BRAKE",
+                            "Action": "___",
                             "IsChecked": false
                         },
                         {
-                            "Title": "Mixture",
-                            "Action": "LEAN",
+                            "Title": "T.O SPEEDS & THRUST",
+                            "Action": "(BOTH)",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "WINDOWS/DOORS",
+                            "Action": "CLOSED (BOTH)",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "BEACON",
+                            "Action": "ON",
+                            "IsChecked": false
+                        }
+                    ]
+                },
+                {
+                    "Title": "After Start",
+                    "Items": [
+                        {
+                            "Title": "ANTI-ICE",
+                            "Action": "AS RQRD",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "ECAM-STATUS",
+                            "Action": "CHECKED",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "PITCH TRIM",
+                            "Action": "__% SET",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "RUDDER TRIM",
+                            "Action": "NEUTRAL",
+                            "IsChecked": false
+                        }
+                    ]
+                },
+                {
+                    "Title": "Taxi",
+                    "Items": [
+                        {
+                            "Title": "FLT CTL",
+                            "Action": "CHECKED (BOTH)",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "FLAP SETTING",
+                            "Action": "CONF ___(BOTH)",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "ENG MODE SEL",
+                            "Action": "___",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "ECAM MEMO",
+                            "Action": "T.O NO BLUE",
+                            "IsChecked": false
+                        }
+                    ]
+                },
+                {
+                    "Title": "Line-Up",
+                    "Items": [
+                        {
+                            "Title": "T.O RWY",
+                            "Action": "___(BOTH)",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "RADAR & PRED W/S",
+                            "Action": "(BOTH)",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "CABIN CREW",
+                            "Action": "ADVISED",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "TCAS",
+                            "Action": "TA OR TA/RA",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "PACK 1 & 2",
+                            "Action": "___(BOTH)",
+                            "IsChecked": false
+                        }
+                    ]
+                },
+                {
+                    "Title": "Departure Change",
+                    "Items": [
+                        {
+                            "Title": "RWY & SID",
+                            "Action": "CONFIRM",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "FLAP SETTING",
+                            "Action": "CONF ___(BOTH)",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "T.O SPEEDS & THRUST",
+                            "Action": "(BOTH)",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "FCU ALT",
+                            "Action": "_____",
+                            "IsChecked": false
+                        }
+                    ]
+                },
+                {
+                    "Title": "Approach",
+                    "Items": [
+                        {
+                            "Title": "BARO REF",
+                            "Action": "____(BOTH)",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "SEAT BELTS",
+                            "Action": "ON",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "MINIMUM",
+                            "Action": "___(BOTH)",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "ENG MODE SEL",
+                            "Action": "_____",
+                            "IsChecked": false
+                        }
+                    ]
+                },
+                {
+                    "Title": "Landing",
+                    "Items": [
+                        {
+                            "Title": "G/A ALTITUDE",
+                            "Action": "___SET (BOTH)",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "CABIN CREW",
+                            "Action": "ADVISED",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "ECAM MEMO",
+                            "Action": "LND NO BLUE",
+                            "IsChecked": false
+                        }
+                    ]
+                },
+                {
+                    "Title": "After Landing",
+                    "Items": [
+                        {
+                            "Title": "RADAR & PRED W/S",
+                            "Action": "OFF",
+                            "IsChecked": false
+                        }
+                    ]
+                },
+                {
+                    "Title": "Parking (SILENT)",
+                    "Items": [
+                        {
+                            "Title": "DISARM DOORS PA",
+                            "Action": "COMPLETED",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "APU BLEED",
+                            "Action": "AS RQRD"
+                        },
+                        {
+                            "Title": "Y ELEC PUMP",
+                            "Action": "OFF",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "ENGINES",
+                            "Action": "OFF",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "SEAT BELTS",
+                            "Action": "OFF",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "EXT LT",
+                            "Action": "AS RQRD",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "PARK BRK and CHOCKS",
+                            "Action": "AS RQRD",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "TRANSPONDER",
+                            "Action": "STANDBY 2000",
+                            "IsChecked": false
+                        }
+                    ]
+                },
+                {
+                    "Title": "EMERGENCY EVACUATION",
+                    "IsEmergency": true,
+                    "Items": [
+                        {
+                            "Title": "AIRCRAFT/PARKING BRAKE",
+                            "Action": "STOP / ON",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "ATC (VHF 1)",
+                            "Action": "NOTIFY",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "CABIN CREW (PA)",
+                            "Action": "ALERT",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "ΔP (Only if MAN CAB PR has been used)",
+                            "Action": "CHECK ZERO",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "ALL ENGINE MASTERS",
+                            "Action": "OFF",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "ALL FIRE PB (ENG & APU)",
+                            "Action": "PUSH",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "ALL AGENTS (ENG & APU)",
+                            "Action": "AS RQRD",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "IF EVACUATION REQUIRED",
+                            "Action": "EVACUATION: INNITIATE",
+                            "IsChecked": false
+                        },
+                        {
+                            "Title": "IF EVACUATION NOT REQUIRED",
+                            "Action": "NOTIFY PAX AND CREW",
                             "IsChecked": false
                         }
                     ]

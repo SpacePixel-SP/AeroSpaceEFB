@@ -200,14 +200,51 @@ public class MainViewModel : INotifyPropertyChanged
     {
         try
         {
+            // 1. Prüfen, ob die Datei überhaupt geöffnet werden kann
             using var stream = await FileSystem.OpenAppPackageFileAsync("default_checklists.json");
             using var reader = new StreamReader(stream);
             string json = await reader.ReadToEndAsync();
-            return JsonSerializer.Deserialize<AppConfigData>(json);
+
+            if (string.IsNullOrWhiteSpace(json))
+            {
+                System.Diagnostics.Debug.WriteLine("⚠️ WARNUNG: default_checklists.json ist leer!");
+                return null;
+            }
+
+            // 2. JSON mit Fehlertoleranz deserialisieren
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                AllowTrailingCommas = true,
+                ReadCommentHandling = JsonCommentHandling.Skip
+            };
+
+            var result = JsonSerializer.Deserialize<AppConfigData>(json, options);
+
+            if (result == null)
+            {
+                System.Diagnostics.Debug.WriteLine("⚠️ WARNUNG: Deserialisierung lieferte null zurück!");
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("✅ SUCCESS: Dev-JSON erfolgreich geladen!");
+            }
+
+            return result;
+        }
+        catch (FileNotFoundException fnfEx)
+        {
+            System.Diagnostics.Debug.WriteLine($"❌ DATEIFEHLER: default_checklists.json wurde nicht gefunden! Messsage: {fnfEx.Message}");
+            return null;
+        }
+        catch (JsonException jsonEx)
+        {
+            System.Diagnostics.Debug.WriteLine($"❌ JSON SYNTAX-FEHLER in der Datei: {jsonEx.Message}");
+            return null;
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"Fehler beim Laden der Dev-JSON: {ex.Message}");
+            System.Diagnostics.Debug.WriteLine($"❌ UNBEKANNTER FEHLER beim Laden der Dev-JSON: {ex.Message}");
             return null;
         }
     }
