@@ -9,7 +9,15 @@
 
 # AeroSpaceEFB
 ## Features
-Aktuell umfasst AeroSpaceEFB das erstellen, anpassen und abarbeiten von Checklisten. Es werden noch viele weitere Features kommen!
+Aktuell umfasst der EFB die folgenden Features. Es werden noch viele weitere Features kommen!
+
+### Aktuelle Features
+  - Checklisten erstellen, bearbeiten und abarbeiten
+  - Das ATC Scratchpad auf welchem man Informationen aufschreiben kann
+  - Calculations Seite zum berechnen des T.O CGs, TOD, Crosswind und Fuel
+
+### Geplante Features
+  - N/A
 
 ## Standart Checklisten
 Es gibt standartmäßig folgende Checklisten:
