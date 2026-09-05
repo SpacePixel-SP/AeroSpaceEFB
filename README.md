@@ -10,3 +10,10 @@
 # AeroSpaceEFB
 ## Features
 Aktuell umfasst AeroSpaceEFB das erstellen, anpassen und abarbeiten von Checklisten. Es werden noch viele weitere Features kommen!
+
+## Standart Checklisten
+Es gibt standartmäßig folgende Checklisten:
+  - Airbus a32X
+
+In Zukunft werden noch mehr Standart Checklisten hinzugefügt!
+Es können natürlich benutzerdefinierte Checklisten erstellt werden.
